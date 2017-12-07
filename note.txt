@@ -1,0 +1,6 @@
+statistik data dalam bentuk chart ataupun angka 
+jumlah vendor, jumlah user, jumlah booking & transaksi, jumlah nominal transaksi
+
+
+Vendor - jumlah booking, user - jumlah booking
+vendor terbanyak di booking, vendor tersedikit di booking, user terbanyak booking)
