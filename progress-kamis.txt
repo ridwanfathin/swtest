@@ -1,0 +1,9 @@
+Progress Aplikasi SWTest :
+1. Belum menampilkan tabel skoring.
+2. Score tidak disimpan di DB, dihitung tiap akan ditampilkan.
+3. Ranking belum dapat dilakukan karena Score hanya disimpan di array dan belum menemukan cara yang mudah untuk sort elemen array.
+4. Belum bisa upload/download file.
+5. Rank pada Rank Utama belum bisa diedit, masih perlu dipikirkan tentang implementasi tampilannya, secara data sudah di kondisikan. 
+6. Rank Terukur hanya ditampilkan sebagai data statis. Mengingat hanya rank yang dapat diubah, dan Rank terukur ranknya sudah pasti.
+
+Tadinya saya mau upload ke heroku supaya bias dilihat langsung hasilnya, tapi ternyata masih error-error, jadi saya baru bisa menyertakan source code di link: https://github.com/ridwanfathin/swtest
