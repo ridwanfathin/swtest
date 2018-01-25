@@ -165,6 +165,45 @@ class user extends CI_Controller {
 		}
 	}
 
+	public function main_edit()  
+	{
+		$cek = $this->session->userdata('username');
+		if(!empty($cek)){ //jika pernah login
+			$res = $this->M_main->getAllData('criteria');
+			$data['criteria'] = $res; 
+			$this->load->view('p_header');
+			$this->load->view('p_sidebar');
+			$this->load->view('p_admin_main_edit',$data);
+			$this->load->view('p_footer');
+		}else{
+			$this->load->view('p_login');
+		}
+	}
+
+	public function main_edit_action()  
+	{
+		$cek = $this->session->userdata('username');
+		if(!empty($cek)){ //jika pernah login
+			$res = $this->M_main->getAllData('criteria');
+			foreach ($res as $c) {
+				// $rank = $_POST["c".$res[0]['ID_CRITERIA']];
+				// var_dump(isset($_POST["c1"])); die();
+				$data = array(
+					'RANK' => isset($_POST["c".$c['ID_CRITERIA']]) ? $_POST["c".$c['ID_CRITERIA']] : ''
+				);
+				$condition = array (
+					'ID_CRITERIA' => $c['ID_CRITERIA']
+				);
+				
+				$this->M_main->updateData('criteria', $data, $condition);
+			}
+			
+			redirect('user/main');
+		}else{
+			$this->load->view('p_login');
+		}
+	}
+
 	public function measured()  
 	{
 		$cek = $this->session->userdata('username');
@@ -177,14 +216,5 @@ class user extends CI_Controller {
 			$this->load->view('p_login');
 		}
 	}
-
-	public function do_delete($id){
-			$where = array('id' => $id);
-				$res= $this->db_model->DeleteData('appointment',$where);
-			if($res>=1){
-				$this->session->set_flashdata('info','Delete data success');
-				redirect('doctor');
-			}
-		}
   
 }

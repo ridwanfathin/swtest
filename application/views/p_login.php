@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<input type="password" class="form-control" placeholder="Password" name="password">
 				<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 			</div>
-			<?php echo "<alert>".$this->session->flashdata('pesan')."</alert>"; ?>
+			<?php //echo "<alert>".$this->session->flashdata('pesan')."</alert>"; ?>
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-4">

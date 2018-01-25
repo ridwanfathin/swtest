@@ -141,7 +141,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-xs-2">
-                            <a href="#form" class="btn btn-danger btn-block btn-flat" >Reset</a>
+                            <a href="" class="btn btn-danger btn-block btn-flat" >Reset</a>
                         </div>
                         <div class="col-xs-2">
                             <button type="submit" class="btn btn-primary btn-block btn-flat" >Submit</button>

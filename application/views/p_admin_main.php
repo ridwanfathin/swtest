@@ -41,7 +41,7 @@
                 } ?>
                 </tbody>
               </table>
-              <!-- <a href="<?php echo base_url()."index.php/user/edit_rank" ?>" class="btn btn-default btn-flat">Edit Rank</a> -->
+              <a href="<?php echo base_url()."index.php/user/main_edit" ?>" class="btn btn-warning btn-flat pull-right">Edit Rank</a>
             </div>
             <!-- /.box-body -->
           </div>
