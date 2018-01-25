@@ -32,6 +32,20 @@ class tester extends CI_Controller {
 			$total_score += $converted * $weight;
 		}
 		$data['total'] = $total_score;
+
+		//update result table
+		$score = $this->M_score->getResultByIdTester($id);
+		$data_update = array(
+			'score' => $total_score
+		);
+		$condition = array(
+			'id_tester' => $id
+		);
+		$res = $this->M_main->updateData('result', $data_update, $condition);
+
+		//get current scoring table
+		$res = $this->M_score->getAllResult();
+		$data['result'] = $res;
 		$this->load->view('p_result',$data);
 	}
 
@@ -42,41 +56,41 @@ class tester extends CI_Controller {
 		switch ($id_criteria) {
 			case 1:
 				//Jumlah Bug
-				if($value<6) $score = 0.06;
-				else if($value<11) $score = 0.15;
-				else if($value<16) $score = 0.27;
-				else $score = 0.52;
+				if($value<6) $score = 0.06/0.52;
+				else if($value<11) $score = 0.15/0.52;
+				else if($value<16) $score = 0.27/0.52;
+				else $score = 0.52/0.52;
 				break;
 			case 2:
 				//Lama Pengerjaan
-				if($value>120) $score = 0.06;
-				else if($value>60) $score = 0.15;
-				else if($value>30) $score = 0.27;
-				else $score = 0.52;
+				if($value>120) $score = 0.06/0.52;
+				else if($value>60) $score = 0.15/0.52;
+				else if($value>30) $score = 0.27/0.52;
+				else $score = 0.52/0.52;
 				break;
 			case 3:
 				//Pengalaman Pekerjaan
-				if($value>3) $score = 0.61;
-				else if($value>1) $score = 0.28;
-				else $score = 0.11;
+				if($value>3) $score = 0.61/0.61;
+				else if($value>1) $score = 0.28/0.61;
+				else $score = 0.11/0.61;
 				break;
 			case 4:
 				//Training
-				if($value=1) $score = 0.75;
-				else $score = 0.25;
+				if($value=1) $score = 0.75/0.75;
+				else $score = 0.25/0.75;
 				break;
 			case 5:
 				//Jenjang Pendidikan
-				if($value=="D3") $score = 0.11;
-				else if($value=="D4" || $value=="S1") $score = 0.28;
-				else $score = 0.61;
+				if($value=="D3") $score = 0.11/0.61;
+				else if($value=="D4" || $value=="S1") $score = 0.28/0.61;
+				else $score = 0.61/0.61;
 				break;
 			case 6:
 				//Jumlah Kesalahan
-				if($value<6) $score = 0.52;
-				else if($value<11) $score = 0.27;
-				else if($value<16) $score = 0.15;
-				else $score = 0.06;
+				if($value<6) $score = 0.52/0.52;
+				else if($value<11) $score = 0.27/0.52;
+				else if($value<16) $score = 0.15/0.52;
+				else $score = 0.06/0.52;
 				break;
 		}
 		return $score;
@@ -99,12 +113,13 @@ class tester extends CI_Controller {
 		$score[3] = $_POST['pengalaman'];
 		$score[4] = $_POST['training'];
 		$score[5] = $_POST['pendidikan'];
-		$score[6] = 20-(int)$score[1];
+		$score[6] = 20-(int)$score[1]; //jumlah bug ditanam =20 
    
 		if(!empty($name)){
 			$data_insert = array(
 				'name' => $name
 			);
+			
 			$res = $this->M_main->insertData('tester',$data_insert);
 			$get = $this->M_tester->getTesterByName($name);
 			if($res>0){
@@ -121,6 +136,20 @@ class tester extends CI_Controller {
 					$res = $this->M_main->insertData('score',$data_insert);
 				}
 				$this->session->set_flashdata('pesan','Berhasil disimpan');
+
+				//insert to result table
+				$data = array(
+					'ID_TESTER' => $get[0]['ID_TESTER'],
+					'jumlah_bug_ditemukan' => $score[1],
+					'lama_pengerjaan' => $score[2],
+					'pengalaman_kerja' => $score[3],
+					'training' => $score[4],
+					'jenjang_pendidikan' => $score[5],
+					'kesalahan_identifikasi_bug' => $score[6]
+				);
+				//
+				$res = $this->M_main->insertData('result',$data);
+
 				$this->result($get[0]['ID_TESTER']);
 			}else{
 				$this->session->set_flashdata('pesan','Gagal disimpan');

@@ -85,7 +85,7 @@
 
 
     <!-- About Section -->
-    <section id="about">
+    <section id="form">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

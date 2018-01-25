@@ -97,7 +97,30 @@
                     <br>
                     <h1><?php echo $total ?></h1>
                     <br>
-                    <!-- <p>Tabel Skoring saat ini:</p> -->
+                    <p>Tabel Skoring saat ini:</p>
+                    <table id="res" class="table table-bordered table-hover col-sm-4">
+                        <thead>
+                        <tr>
+                          <th>Rank</th>
+                          <th>Nama</th>
+                          <th>Skor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $no=0;
+                          // var_dump($result); die();
+                          foreach ($result as $s) {
+                          ?>
+                            <tr>
+                              <td><?php echo ++$no; ?></td>
+                              <td><?php echo $s->NAME;?></td>
+                              <td><?php echo $s->score;?></td>
+                            </tr>
+                        <?php
+                        } ?>
+                        </tbody>
+                      </table>
                 </div>
             </div>
         </div>

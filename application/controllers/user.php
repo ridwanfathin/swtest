@@ -32,9 +32,28 @@ class user extends CI_Controller {
 						$score[$id] += $converted * $weight;
 					}
 				}
-				$data['tester'] = $tester;
-				$data['scores'] = $all_scores;
-				$data['score'] = $score;
+
+				//update result table for all record
+				$no = 0;
+				foreach ($score as $s) {
+					++$no;
+					$data_update = array(
+						'ID_TESTER' => $tester[$no-1]["ID_TESTER"],
+						'jumlah_bug_ditemukan' => $all_scores[(int)$tester[$no-1]["ID_TESTER"]][0]['VALUE'],
+						'lama_pengerjaan' => $all_scores[(int)$tester[$no-1]["ID_TESTER"]][1]['VALUE'],
+						'pengalaman_kerja' => $all_scores[(int)$tester[$no-1]["ID_TESTER"]][2]['VALUE'],
+						'training' => $all_scores[(int)$tester[$no-1]["ID_TESTER"]][3]['VALUE'],
+						'jenjang_pendidikan' =>  $all_scores[(int)$tester[$no-1]["ID_TESTER"]][4]['VALUE'],
+						'kesalahan_identifikasi_bug' => $all_scores[(int)$tester[$no-1]["ID_TESTER"]][5]['VALUE']
+					);
+					$condition = array(
+						'id_tester' => $tester[$no-1]["ID_TESTER"]
+					);
+					$res = $this->M_main->updateData('result', $data_update, $condition);   
+                } 
+				//
+                $res = $this->M_score->getAllResult();
+				$data['result'] = $res;
 			}else{
 				$data = 0;
 			}
@@ -53,41 +72,41 @@ class user extends CI_Controller {
 		switch ($id_criteria) {
 			case 1:
 				//Jumlah Bug
-				if($value<6) $score = 0.06;
-				else if($value<11) $score = 0.15;
-				else if($value<16) $score = 0.27;
-				else $score = 0.52;
+				if($value<6) $score = 0.06/0.52;
+				else if($value<11) $score = 0.15/0.52;
+				else if($value<16) $score = 0.27/0.52;
+				else $score = 0.52/0.52;
 				break;
 			case 2:
 				//Lama Pengerjaan
-				if($value>120) $score = 0.06;
-				else if($value>60) $score = 0.15;
-				else if($value>30) $score = 0.27;
-				else $score = 0.52;
+				if($value>120) $score = 0.06/0.52;
+				else if($value>60) $score = 0.15/0.52;
+				else if($value>30) $score = 0.27/0.52;
+				else $score = 0.52/0.52;
 				break;
 			case 3:
 				//Pengalaman Pekerjaan
-				if($value>3) $score = 0.61;
-				else if($value>1) $score = 0.28;
-				else $score = 0.11;
+				if($value>3) $score = 0.61/0.61;
+				else if($value>1) $score = 0.28/0.61;
+				else $score = 0.11/0.61;
 				break;
 			case 4:
 				//Training
-				if($value=1) $score = 0.75;
-				else $score = 0.25;
+				if($value=1) $score = 0.75/0.75;
+				else $score = 0.25/0.75;
 				break;
 			case 5:
 				//Jenjang Pendidikan
-				if($value=="D3") $score = 0.11;
-				else if($value=="D4" || $value=="S1") $score = 0.28;
-				else $score = 0.61;
+				if($value=="D3") $score = 0.11/0.61;
+				else if($value=="D4" || $value=="S1") $score = 0.28/0.61;
+				else $score = 0.61/0.61;
 				break;
 			case 6:
 				//Jumlah Kesalahan
-				if($value<6) $score = 0.52;
-				else if($value<11) $score = 0.27;
-				else if($value<16) $score = 0.15;
-				else $score = 0.06;
+				if($value<6) $score = 0.52/0.52;
+				else if($value<11) $score = 0.27/0.52;
+				else if($value<16) $score = 0.15/0.52;
+				else $score = 0.06/0.52;
 				break;
 		}
 		return $score;

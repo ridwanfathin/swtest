@@ -19,7 +19,7 @@ class M_main extends CI_Model {
 	}
 
 	public function getAllData($table){
-		$data = $this->db->query('select * from '.$table);
+		$data = $this->db->get($table);
 		return $data->result_array();
 	}
 
