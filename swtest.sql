@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2017 at 08:02 AM
+-- Generation Time: Jan 25, 2018 at 05:25 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -42,9 +42,36 @@ INSERT INTO `criteria` (`ID_CRITERIA`, `DESCRIPTION`, `RANK`) VALUES
 (1, 'Jumlah Bug Ditemukan', 1),
 (2, 'Lama pengerjaan', 3),
 (3, 'Pengalaman Kerja', 4),
-(4, 'Training', 5),
+(4, 'Training', 1),
 (5, 'Jenjang Pendidikan', 6),
 (6, 'Kesalahan Identifikasi Bug', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `result`
+--
+
+CREATE TABLE `result` (
+  `id_result` int(11) NOT NULL,
+  `id_tester` int(11) NOT NULL,
+  `jumlah_bug_ditemukan` int(11) NOT NULL,
+  `lama_pengerjaan` int(11) NOT NULL,
+  `pengalaman_kerja` int(11) NOT NULL,
+  `training` int(11) NOT NULL,
+  `jenjang_pendidikan` varchar(5) NOT NULL,
+  `kesalahan_identifikasi_bug` int(11) NOT NULL,
+  `score` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `result`
+--
+
+INSERT INTO `result` (`id_result`, `id_tester`, `jumlah_bug_ditemukan`, `lama_pengerjaan`, `pengalaman_kerja`, `training`, `jenjang_pendidikan`, `kesalahan_identifikasi_bug`, `score`) VALUES
+(2, 89, 10, 90, 0, 0, 'D4', 10, 0.381338),
+(3, 90, 12, 94, 0, 0, 'D4', 8, 0.475568),
+(4, 91, 11, 112, 0, 0, 'D3', 9, 0.467827);
 
 -- --------------------------------------------------------
 
@@ -63,30 +90,24 @@ CREATE TABLE `score` (
 --
 
 INSERT INTO `score` (`ID_CRITERIA`, `ID_TESTER`, `VALUE`) VALUES
-(1, 76, '14'),
-(1, 77, '16'),
-(1, 78, '16'),
-(1, 79, '16'),
-(2, 76, '34'),
-(2, 77, '67'),
-(2, 78, '67'),
-(2, 79, '45'),
-(3, 76, '2'),
-(3, 77, '1'),
-(3, 78, '1'),
-(3, 79, '3'),
-(4, 76, '1'),
-(4, 77, '1'),
-(4, 78, '1'),
-(4, 79, '1'),
-(5, 76, 'S1'),
-(5, 77, 'D3'),
-(5, 78, 'D3'),
-(5, 79, 'D3'),
-(6, 76, '6'),
-(6, 77, '4'),
-(6, 78, '4'),
-(6, 79, '4');
+(1, 89, '10'),
+(1, 90, '12'),
+(1, 91, '11'),
+(2, 89, '90'),
+(2, 90, '94'),
+(2, 91, '112'),
+(3, 89, '0'),
+(3, 90, '0'),
+(3, 91, '0'),
+(4, 89, '0'),
+(4, 90, '0'),
+(4, 91, '0'),
+(5, 89, 'D4'),
+(5, 90, 'D4'),
+(5, 91, 'D3'),
+(6, 89, '10'),
+(6, 90, '8'),
+(6, 91, '9');
 
 -- --------------------------------------------------------
 
@@ -105,10 +126,9 @@ CREATE TABLE `tester` (
 --
 
 INSERT INTO `tester` (`ID_TESTER`, `NAME`, `REPORT`) VALUES
-(76, 'Redion Gray', ''),
-(77, 'Muhammad Fathin', ''),
-(78, 'Muhammad Erind', ''),
-(79, 'Gray', '');
+(89, 'Andrianto Nur Iskandar', ''),
+(90, 'Pratama Rizky Kurniawan', ''),
+(91, 'Inda Nabila Maulida', '');
 
 -- --------------------------------------------------------
 
@@ -136,8 +156,13 @@ INSERT INTO `user` (`USERNAME`, `PASSWORD`) VALUES
 -- Indexes for table `criteria`
 --
 ALTER TABLE `criteria`
-  ADD PRIMARY KEY (`ID_CRITERIA`),
-  ADD UNIQUE KEY `RANK` (`RANK`);
+  ADD PRIMARY KEY (`ID_CRITERIA`);
+
+--
+-- Indexes for table `result`
+--
+ALTER TABLE `result`
+  ADD PRIMARY KEY (`id_result`);
 
 --
 -- Indexes for table `score`
@@ -170,10 +195,16 @@ ALTER TABLE `criteria`
   MODIFY `ID_CRITERIA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `result`
+--
+ALTER TABLE `result`
+  MODIFY `id_result` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tester`
 --
 ALTER TABLE `tester`
-  MODIFY `ID_TESTER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `ID_TESTER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- Constraints for dumped tables

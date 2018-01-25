@@ -70,16 +70,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+$cleardb_server   = "us-cdbr-gcp-east-01.cleardb.net";
+$cleardb_username = "b4020aa4a5d910";
+$cleardb_password = "c330d1cf";
+$cleardb_db       = "gcp_64f8208be15d000f741e";
+
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'SWTest',
-	'dbdriver' => 'mysqli',
+	'hostname' => $cleardb_server,
+    'username' => $cleardb_username,
+    'password' => $cleardb_password,
+    'database' => $cleardb_db,
+    'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
