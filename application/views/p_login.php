@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="register-box-body">
     <p class="login-box-msg">Login to your account</p>
 
-    <form action="<?php echo base_url()."index.php/user/login" ?>" method="post">
+    <form action="<?php echo base_url()."index.php/User/login" ?>" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Username" name="username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

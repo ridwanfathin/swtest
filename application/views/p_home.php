@@ -160,7 +160,7 @@
                 <div class="col-lg-12 text-center">
                     <h2>Login</h2>
                     <hr class="star-light">
-                    <a href="<?php echo base_url()."index.php/user" ?>" class="btn btn-lg btn-outline">
+                    <a href="<?php echo base_url()."index.php/User" ?>" class="btn btn-lg btn-outline">
                         Login
                     </a>
                 </div>

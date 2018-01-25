@@ -20,7 +20,7 @@
               if(empty($active)){ ?>
                 class="active"
               <?php } ?>>
-          <a href="<?php echo base_url()."index.php/user" ?>">
+          <a href="<?php echo base_url()."index.php/User" ?>">
             <i class="fa fa-dashboard"></i> <span>Hasil</span>
           </a>
         </li>
@@ -28,7 +28,7 @@
               if($active == "main"){ ?>
                 class="active"
               <?php } ?>>
-          <a href="<?php echo base_url()."index.php/user/main" ?>">
+          <a href="<?php echo base_url()."index.php/User/main" ?>">
             <i class="fa fa-files-o"></i> <span>Rank Utama</span>
           </a>
         </li>
@@ -36,7 +36,7 @@
               if($active == "measured"){ ?>
                 class="active"
               <?php } ?>>
-          <a href="<?php echo base_url()."index.php/user/measured" ?>">
+          <a href="<?php echo base_url()."index.php/User/measured" ?>">
             <i class="fa fa-th"></i> <span>Rank Terukur</span>
           </a>
         </li>

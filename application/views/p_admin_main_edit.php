@@ -21,7 +21,7 @@
             <!-- /.box-header -->
 
             <div class="box-body">
-              <form action="<?php echo base_url()."index.php/user/main_edit_action" ?>" method="post">
+              <form action="<?php echo base_url()."index.php/User/main_edit_action" ?>" method="post">
                         
                 <table id="example2" class="table table-bordered table-hover col-sm-4">
                   <thead>
